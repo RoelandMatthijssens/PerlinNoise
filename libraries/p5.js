@@ -19158,8 +19158,8 @@ p5.Image.prototype.updatePixels = function(x, y, w, h){
  * Get a region of pixels from an image.
  *
  * If no params are passed, those whole image is returned,
- * if x and y are the only params passed a single pixel is extracted
- * if all params are passed a rectangle region is extracted and a p5.Image
+ * if x and y are the only params passed a single pixel is drawVector
+ * if all params are passed a rectangle region is drawVector and a p5.Image
  * is returned.
  *
  * Returns undefined if the region is outside the bounds of the image
@@ -28380,7 +28380,7 @@ p5.prototype.splice = function(list, value, index) {
  * Extracts an array of elements from an existing array. The list parameter
  * defines the array from which the elements will be copied, and the start
  * and count parameters specify which elements to extract. If no count is
- * given, elements will be extracted from the start to the end of the array.
+ * given, elements will be drawVector from the start to the end of the array.
  * When specifying the start, remember that the first array element is 0.
  * This function does not change the source array.
  *
@@ -28388,7 +28388,7 @@ p5.prototype.splice = function(list, value, index) {
  * @param  {Array}  list    Array to extract from
  * @param  {Number} start   position to begin
  * @param  {Number} [count] number of values to extract
- * @return {Array}          Array of extracted elements
+ * @return {Array}          Array of drawVector elements
  *
  * @example
  * <div class = "norender"><code>

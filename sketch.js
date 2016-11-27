@@ -1,30 +1,39 @@
 var width, height;
+var rows, cols, scl;
+var fr, zoff;
 function setup() {
     width = 500;
     height = 500;
+    scl = 20;
+    cols = floor(width/scl);
+    rows = floor(height/scl);
     createCanvas(width, height);
+    fr = createP();
+    zoff = 0;
 }
 
+function drawVector(x, y, angle) {
+    var direction = p5.Vector.fromAngle(angle);
+    stroke(0);
+    push();
+    translate(x * scl, y * scl);
+    rotate(direction.heading());
+    line(0, 0, scl, 0);
+    pop();
+}
 function draw() {
-    loadPixels();
-    var incr = 0.005;
+    background(255);
+    var incr = 0.1;
     var yoff = 0;
-    for(var y = 0; y < height; y++) {
+    for(var y = 0; y < rows; y++) {
         var xoff = 0;
-        for (var x = 0; x < width; x++) {
-            var color = map(noise(xoff, yoff), 0, 1, 0, 255);
-            var pixel = (x + y*width) * 4;
-            colorPixel(pixel, color);
+        for (var x = 0; x < cols; x++) {
+            var angle = noise(xoff, yoff, zoff) * TWO_PI;
+            drawVector(x, y, angle);
             xoff += incr;
         }
         yoff += incr;
     }
-    updatePixels();
-}
-
-function colorPixel(pixel, color){
-    pixels[pixel+0] = color;
-    pixels[pixel+1] = color;
-    pixels[pixel+2] = color;
-    pixels[pixel+3] = 255;
+    zoff += incr/10;
+    fr.html(floor(frameRate()));
 }
