@@ -1,6 +1,7 @@
 var width, height;
 var rows, cols, scl;
 var fr, zoff;
+var particles, vectors;
 function setup() {
     width = 500;
     height = 500;
@@ -10,11 +11,14 @@ function setup() {
     createCanvas(width, height);
     fr = createP();
     zoff = 0;
+    particles = [];
+    vectors = [];
+    populateParticles(100);
 }
 
 function drawVector(x, y, angle) {
     var direction = p5.Vector.fromAngle(angle);
-    stroke(0);
+    stroke(0, 50);
     push();
     translate(x * scl, y * scl);
     rotate(direction.heading());
@@ -34,6 +38,19 @@ function draw() {
         }
         yoff += incr;
     }
-    zoff += incr/10;
+    //zoff += incr/10;
     fr.html(floor(frameRate()));
+
+    for(var index in particles){
+         var particle = particles[index];
+        particle.show();
+        particle.update();
+    }
+}
+
+function populateParticles(amount){
+    while(amount>0){
+        particles.push(new Particle());
+        amount--;
+    }
 }
